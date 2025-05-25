@@ -47,7 +47,7 @@ jobs:
 
       - name: Fix Cypress Permissions
         run: chmod +x ./node_modules/.bin/cypress
-        
+
       - name: Fix wait-on Permissions
         run: chmod +x ./node_modules/.bin/wait-on
 
@@ -68,10 +68,12 @@ jobs:
         run: npm run cypress:run
 
       - name: Generate HTML report        
-        run: npm run report
+        run: |
+          mkdir -p cypress/results
+          npm run report
 
       - name: Upload Cypress Report
         uses: actions/upload-artifact@v4
         with:
-            name: cypress-report
-            path: cypress/results/report.html
+          name: cypress-report
+          path: cypress/results/report.html

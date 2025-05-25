@@ -67,13 +67,10 @@ jobs:
       - name: Run Cypress tests
         run: npm run cypress:run
 
+      - name: Fix mochawesome-merge Permissions
+         run: chmod +x ./node_modules/.bin/mochawesome-merge
+ 
       - name: Generate HTML report        
         run: |
           mkdir -p cypress/results
           npm run report
-
-      - name: Upload Cypress Report
-        uses: actions/upload-artifact@v4
-        with:
-          name: cypress-report
-          path: cypress/results/report.html

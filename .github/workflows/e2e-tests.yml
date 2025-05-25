@@ -67,9 +67,22 @@ jobs:
       - name: Run Cypress tests
         run: npm run cypress:run
 
+      - name: Install jq
+        run: sudo apt-get update && sudo apt-get install -y jq
+
+      - name: Validate Cypress test results
+        run: |
+          if [ ! -d cypress/results ] || [ -z "$(ls -A cypress/results/*.json 2>/dev/null)" ]; then
+            echo "No Cypress test results found or files are empty."
+            exit 1
+          fi
+          for file in cypress/results/*.json; do
+            cat "$file" | jq empty || { echo "Invalid JSON in $file"; exit 1; }
+          done
+
       - name: Fix mochawesome-merge Permissions
         run: chmod +x ./node_modules/.bin/mochawesome-merge
- 
+
       - name: Generate HTML report        
         run: |
           mkdir -p cypress/results

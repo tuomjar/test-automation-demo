@@ -30,10 +30,3 @@ jobs:
       - name: Run Cypress tests
         run: npm run test:e2e
 ```
-
-Kun nämä ovat paikoillaan, tee uusi commit ja `git push`:
-```bash
-git add .gitignore .github/workflows/e2e-tests.yml
-git commit -m "Lisätään .gitignore ja GitHub Actions Cypress-ajoon"
-git push
-```

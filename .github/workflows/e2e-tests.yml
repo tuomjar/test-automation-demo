@@ -68,7 +68,7 @@ jobs:
         run: npm run cypress:run
 
       - name: Fix mochawesome-merge Permissions
-         run: chmod +x ./node_modules/.bin/mochawesome-merge
+        run: chmod +x ./node_modules/.bin/mochawesome-merge
  
       - name: Generate HTML report        
         run: |

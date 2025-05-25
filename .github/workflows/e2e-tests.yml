@@ -66,6 +66,15 @@ jobs:
 
       - name: Run Cypress tests
         run: npm run cypress:run
+        
+      - name: Debug Cypress Results
+        run: |
+            echo "Contents of cypress/results:"
+            ls -al cypress/results || echo "No results directory found."
+            for file in cypress/results/*.json; do
+                echo "Contents of $file:"
+                cat "$file" || echo "File not found or empty."
+            done
 
       - name: Install jq
         run: sudo apt-get update && sudo apt-get install -y jq

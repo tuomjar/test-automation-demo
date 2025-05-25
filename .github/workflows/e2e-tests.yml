@@ -66,9 +66,6 @@ jobs:
 
       - name: Run Cypress tests
         run: npm run cypress:run
-        
-      - name: Run Cypress tests
-        run: npm run cypress:run
 
       - name: Debug Cypress Results
         run: |

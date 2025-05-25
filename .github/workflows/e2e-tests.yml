@@ -66,3 +66,11 @@ jobs:
 
       - name: Run Cypress tests
         run: npx cypress run
+        
+      - name: Archive test results
+        if: always()
+        uses: actions/upload-artifact@v3
+        with:
+            name: cypress-results
+            path: cypress/results
+

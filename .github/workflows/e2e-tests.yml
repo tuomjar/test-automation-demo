@@ -23,10 +23,16 @@ jobs:
         run: npm install
 
       - name: Install frontend dependencies
-        run: npm install --prefix frontend
+        run: |
+          cd frontend
+          npm install
 
-      - name: Install start-server-and-test
-        run: npm install --save-dev start-server-and-test
+      - name: Start Vite server in background
+        run: |
+          cd frontend
+          nohup npm run dev > vite.log 2>&1 &
+          # Odotetaan että palvelin käynnistyy (voit säätää aikaa)
+          sleep 10
 
       - name: Run Cypress tests
-        run: npx start-server-and-test "npm run dev --prefix frontend" http://localhost:5173 npm run cypress:run
+        run: npm run cypress:run

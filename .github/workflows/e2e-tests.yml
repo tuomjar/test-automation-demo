@@ -66,13 +66,3 @@ jobs:
 
       - name: Run Cypress tests
         run: npx cypress run
-        
-      - name: Debug - List Cypress directories
-        run: ls -R frontend/cypress/
-
-      - name: Upload Cypress videos as artifact
-        if: always()
-        uses: actions/upload-artifact@v3
-        with:
-            name: cypress-videos
-            path: frontend/cypress/videos/

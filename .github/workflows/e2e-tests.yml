@@ -29,6 +29,14 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-node_modules
 
+      - name: Cache Cypress binaries
+        uses: actions/cache@v3
+        with:
+          path: ~/.cache/Cypress
+          key: ${{ runner.os }}-cypress-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-cypress
+
       - name: Install root dependencies
         run: npm install
 
@@ -36,6 +44,15 @@ jobs:
         run: |
           cd frontend
           npm install
+
+      - name: Fix Cypress Permissions
+        run: chmod +x ./node_modules/.bin/cypress
+        
+      - name: Fix wait-on Permissions
+        run: chmod +x ./node_modules/.bin/wait-on
+
+      - name: Install Cypress
+        run: npx cypress install
 
       - name: Start frontend server
         run: |
@@ -48,8 +65,8 @@ jobs:
         run: npx wait-on http://localhost:5173
 
       - name: Run Cypress tests
-        run: npx cypress run --reporter spec
-
+        run: npx cypress run
+        
       - name: Upload Cypress videos as artifact
         if: always()
         uses: actions/upload-artifact@v3

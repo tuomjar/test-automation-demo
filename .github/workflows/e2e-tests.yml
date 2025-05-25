@@ -19,7 +19,7 @@ jobs:
         with:
           node-version: '18'
 
-      - name: Install dependencies (root)
+      - name: Install root dependencies
         run: npm install
 
       - name: Install frontend dependencies
@@ -27,12 +27,6 @@ jobs:
           cd frontend
           npm install
 
-      - name: Start Vite server in background
-        run: |
-          cd frontend
-          nohup npm run dev > vite.log 2>&1 &
-          # Odotetaan että palvelin käynnistyy (voit säätää aikaa)
-          sleep 10
-
       - name: Run Cypress tests
-        run: npm run cypress:run
+        # käytetään npx varmistamaan että paikallinen Cypress suoritetaan
+        run: npx cypress run

@@ -23,9 +23,7 @@ jobs:
         run: npm install
 
       - name: Install frontend dependencies
-        run: |
-          cd frontend
-          npm install
+        run: npm install --prefix frontend
 
       - name: Run Cypress tests
-        run: npm run test:e2e
+        run: npx start-server-and-test "npm run dev --prefix frontend" http://localhost:5173 npm run cypress:run

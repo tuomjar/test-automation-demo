@@ -47,6 +47,9 @@ jobs:
 
       - name: Fix Cypress Permissions
         run: chmod +x ./node_modules/.bin/cypress
+        
+      - name: Fix wait-on Permissions
+        run: chmod +x ./node_modules/.bin/wait-on
 
       - name: Install Cypress
         run: npx cypress install

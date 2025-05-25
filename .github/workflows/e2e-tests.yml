@@ -1,0 +1,39 @@
+name: E2E Tests
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  cypress-run:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+
+      - name: Install dependencies (root)
+        run: npm install
+
+      - name: Install frontend dependencies
+        run: |
+          cd frontend
+          npm install
+
+      - name: Run Cypress tests
+        run: npm run test:e2e
+```
+
+Kun nämä ovat paikoillaan, tee uusi commit ja `git push`:
+```bash
+git add .gitignore .github/workflows/e2e-tests.yml
+git commit -m "Lisätään .gitignore ja GitHub Actions Cypress-ajoon"
+git push
+```

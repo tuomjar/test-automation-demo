@@ -4,6 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "dev": "cd frontend && npm run dev",
+    "test:e2e": "start-server-and-test dev http://localhost:5173 cypress:run",
+    "cypress:run": "cypress run",
+    "cypress:open": "cypress open",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
@@ -12,6 +16,8 @@
   "type": "commonjs",
   "devDependencies": {
     "cypress": "^14.4.0",
-    "playwright": "^1.52.0"
+    "playwright": "^1.52.0",
+    "start-server-and-test": "^2.0.12"
   }
 }
+

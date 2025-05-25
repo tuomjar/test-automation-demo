@@ -27,6 +27,11 @@ jobs:
           cd frontend
           npm install
 
+      - name: Install Cypress
+        run: npm install cypress --save-dev
+
+      - name: Fix Cypress Permissions
+        run: chmod +x ./node_modules/.bin/cypress
+
       - name: Run Cypress tests
-        # käytetään npx varmistamaan että paikallinen Cypress suoritetaan
         run: npx cypress run

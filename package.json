@@ -8,7 +8,9 @@
     "test:e2e": "start-server-and-test dev http://localhost:5173 cypress:run",
     "cypress:run": "cypress run",
     "cypress:open": "cypress open",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "merge-reports": "mochawesome-merge cypress/results/*.json > cypress/results/output.json",
+    "generate-report": "marge cypress/results/output.json -f report -o cypress/results",
+    "report": "npm run merge-reports && npm run generate-report"
   },
   "keywords": [],
   "author": "",
